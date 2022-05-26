@@ -13,18 +13,18 @@ def imprimir_coste(coste_acumulador,estado_campo):
 #Función para optimizar el codigo y reulizar 
 def imprimir_bosque(estado_edificacion,coste_acumulador,estado_mercado,estado_campo):
      #Mensajes que se van a ocupar mas de una en las condiciones
-    if estado_edificacion == '1':
+    if estado_edificacion == '1':#En caso de ser un insendio
         print(f"{Fore.RED}En la Edificación hay un incendio  \U0001F6A8.")
         coste_acumulador += 1#costo por buscar el incendio
-        estado_campo['edificacion'] = '0'
+        estado_campo['edificacion'] = '0'#cambio de de estado a 0
         print(f'{Fore.BLUE}Incendio apagado de la Edificación \U0001F692 \U0001F681.')
         coste_acumulador += 1#costo por apagar el incendio
         print(f'{Fore.BLUE}Costo actual: {coste_acumulador}\U0001F4C8 \U0001F4C9')
 
-    if estado_mercado  == '1':
+    if estado_mercado  == '1':#En caso de ser un insendio
         print(f"{Fore.RED}En el mercado hay un incendio  \U0001F6A8.")
         coste_acumulador += 1#costo por buscar el incendio
-        estado_campo['mercado'] = '0'
+        estado_campo['mercado'] = '0'#cambio de estado a 0
         coste_acumulador += 1#costo por apagar el incendio
         print(f'{Fore.BLUE}Incendio apagado del Mercado \U0001F692 \U0001F681.')
         print(f'{Fore.BLUE}Costo actual: {coste_acumulador}\U0001F4C8 \U0001F4C9')
@@ -35,18 +35,18 @@ def imprimir_bosque(estado_edificacion,coste_acumulador,estado_mercado,estado_ca
 #Función para optimizar el codigo y reulizar 
 def imprimir_edificacion(estado_bosque,coste_acumulador,estado_mercado,estado_campo):
      #Mensajes que se van a ocupar mas de una en las condiciones
-    if estado_bosque == '1':
+    if estado_bosque == '1':#En caso de ser un insendio
         print(f"{Fore.RED}En el Bosque hay un incendio  \U0001F6A8.")
         coste_acumulador += 1#costo por buscar el incendio
-        estado_campo['bosque'] = '0'
+        estado_campo['bosque'] = '0'#cambio de estado a 0
         print(f"{Fore.GREEN}Incendio apagado en el Bosque \U0001F692 \U0001F681.")
         coste_acumulador += 1#costo por apagar el incendio
         print(f'{Fore.BLUE}Costo actual: {coste_acumulador}\U0001F4C8 \U0001F4C9')
 
-    if estado_mercado  == '1':
+    if estado_mercado  == '1':#En caso de ser un insendio
         print(f"{Fore.RED}En el Mercado hay un incendio  \U0001F6A8.")
         coste_acumulador += 1#costo por buscar el incendio
-        estado_campo['mercado'] = '0'
+        estado_campo['mercado'] = '0'#cambio de estado a 0
         print(f'{Fore.BLUE}Incendio apagado del Mercado \U0001F692 \U0001F681.')
         coste_acumulador += 1#costo por apagar el incendio
         print(f'{Fore.BLUE}Costo actual: {coste_acumulador}\U0001F4C8 \U0001F4C9')
@@ -56,7 +56,7 @@ def imprimir_edificacion(estado_bosque,coste_acumulador,estado_mercado,estado_ca
 
 #Función para optimizar el codigo y reulizar 
 def imprimir_mercado(estado_bosque,coste_acumulador,estado_edificacion,estado_campo):
-    if estado_bosque == '1':
+    if estado_bosque == '1':#En caso de ser un insendio
         print(f"{Fore.RED}En la Bosque hay un incendio  \U0001F6A8.")#Mostrando mensaje en consola
         coste_acumulador += 1#costo por buscar el incendio
         estado_campo['bosque'] = '0'
@@ -64,7 +64,7 @@ def imprimir_mercado(estado_bosque,coste_acumulador,estado_edificacion,estado_ca
         coste_acumulador += 1#costo por apagar el incendio
         print(f'{Fore.BLUE}Costo actual: {coste_acumulador}\U0001F4C8 \U0001F4C9')#Mostrando mensaje en consola
 
-    if estado_edificacion  == '1':
+    if estado_edificacion  == '1':#En caso de ser un insendio
         print(f"{Fore.RED}En la Edificación hay un incendio  \U0001F6A8.")#Mostrando mensaje en consola
         coste_acumulador += 1#costo por buscar el incendio
         estado_campo['edificacion'] = '0'
@@ -74,9 +74,9 @@ def imprimir_mercado(estado_bosque,coste_acumulador,estado_edificacion,estado_ca
     else:
         print(f'En la Edificación y en el Mercado son responsables con el incendio: ')#Mostrando mensaje en consola
     imprimir_coste(coste_acumulador,estado_campo)
-
-
-
+    
+    
+#Función principal 
 def calculo_agente():
     #1==Encendido || 0==apagado
     estado_campo = {'bosque':'0','edificacion':'0','mercado':'0'}#Creamos un diccionario con su (key, value)
@@ -104,11 +104,11 @@ def calculo_agente():
         print(f'{Fore.RED}[1] Hay incendio {emoji.emojize(":fire:")}.\n')
 
         #Bucle para el ingreso de datos para que solo pueda ingresar los datos mostrados por mensaje
-        while estado_bosque != '0' and estado_bosque != '1': #bucle
+        while estado_bosque != '0' and estado_bosque != '1': #Bucle para control de datos mal ingresados
             estado_bosque = input(f'{Fore.GREEN}Ingrese el estado actual del bosque: ')#Ingreso de datos 
-        while estado_edificacion != '0' and estado_edificacion != '1':
+        while estado_edificacion != '0' and estado_edificacion != '1':#Bucle para control de datos mal ingresados
             estado_edificacion = input(f'{Fore.GREEN}Ingrese el estado actual de la Edificación: ')#Ingreso de datos 
-        while estado_mercado != '0' and estado_mercado != '1':
+        while estado_mercado != '0' and estado_mercado != '1':#Bucle para control de datos mal ingresados
             estado_mercado = input(f'{Fore.GREEN}Ingrese el estado actual del mercado: ')#Ingreso de datos 
 
         if estado_bosque == '1':
@@ -128,11 +128,11 @@ def calculo_agente():
         print(f'{Fore.BLUE}[1] Hay incendio {emoji.emojize(":fire:")}.\n')#Mostrando mensaje en consola
 
         #Bucle para el ingreso de datos para que solo pueda ingresar los datos mostrados por mensaje
-        while estado_bosque != '0' and estado_bosque != '1':
+        while estado_bosque != '0' and estado_bosque != '1':#Bucle para control de datos mal ingresados
             estado_bosque = input('Ingrese el estado actual del bosque: ')#Ingreso de datos 
-        while estado_edificacion != '0' and estado_edificacion != '1':
+        while estado_edificacion != '0' and estado_edificacion != '1':#Bucle para control de datos mal ingresados
             estado_edificacion = input('Ingrese el estado actual de la Edificación: ')#Ingreso de datos 
-        while estado_mercado != '0' and estado_mercado != '1':
+        while estado_mercado != '0' and estado_mercado != '1':#Bucle para control de datos mal ingresados
             estado_mercado = input('Ingrese el estado actual del mercado: ')#Ingreso de datos 
 
         if estado_edificacion == '1':
@@ -150,14 +150,14 @@ def calculo_agente():
         print(f'{Fore.GREEN}[0] No hay incendio \U0001F331.')#Mostrando mensaje en consola
         print(f'{Fore.BLUE}[1] Hay incendio {emoji.emojize(":fire:")}.\n')#Mostrando mensaje en consola
 
-        while estado_bosque != '0' and estado_bosque != '1':
+        while estado_bosque != '0' and estado_bosque != '1':#Bucle para control de datos mal ingresados
             estado_bosque = input('Ingrese el estado actual del bosque: ')#Ingreso de datos bosque
-        while estado_edificacion != '0' and estado_edificacion != '1':
+        while estado_edificacion != '0' and estado_edificacion != '1':#Bucle para control de datos mal ingresados
             estado_edificacion = input('Ingrese el estado actual de la Edificación: ')#Ingreso de datos par la Edificación
-        while estado_mercado != '0' and estado_mercado != '1':
+        while estado_mercado != '0' and estado_mercado != '1':#Bucle para control de datos mal ingresados
             estado_mercado = input('Ingrese el estado actual del mercado: ')#Ingreso de datos para el mercado
 
-        if estado_mercado == '1':
+        if estado_mercado == '1':#En caso de ser un insendio
             print(f"{Fore.RED}En el Mercado hay un incendio  \U0001F6A8.")#Mostrando mensaje en consola
             estado_campo['mercado'] = '0'#Apagando el incendio, cuidando el medio hambiente
             coste_acumulador += 1#variable acumuladora
